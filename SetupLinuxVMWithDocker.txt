@@ -1,0 +1,39 @@
+Setup A Docker Environment on Azure Linux VM. Easy to run commands. It may take up to 15 to 30 minutes for a complete install. 
+
+1) Azure Portal Task : 
+VM	Create Ubuntu VM in Azure Resource group with static IP
+
+2) SSH	Install MobaXTerm on your desktop/laptop : Client Tool  
+
+3) Navigate to MobaXTerm / Login to your Azure VM using IP/User ID/PWD 
+
+Docker Install Commands : 
+
+	sudo apt update
+	sudo apt install apt-transport-https ca-certificates curl software-properties-common	
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+
+ignore the error about public key could not be validated. 
+	sudo apt update
+	sudo apt install docker-ce
+	sudo systemctl status docker
+	sudo usermod -aG docker ${USER}   #run docker as SUDO without typing sudo all the time, make sure to log out and login again to SSH 
+
+4) Azure CLI install on Linux VM 
+
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+KubeCTL	curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+
+	chmod +x ./kubectl 
+	
+	sudo mv ./kubectl /usr/local/bin/kubectl 
+	
+	kubectl version --client 
+
+5) editor	install on Linux VM
+
+sudo apt-get install -y jq
+	
+6) Validate by running few Docker commands 
+Docker ps -a 
